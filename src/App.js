@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 import './App.css';
+import Welcome from './Welcome/Welcome';
+import Something from './Something/Something';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Router>
+                    <div>
+                        <nav className="navbar navbar-inverse">
+                            <div className="navbar-header">
+                                <Link className="navbar-brand" to="/about">School Management System</Link>
+                            </div>
+                            <ul className="nav navbar-nav">
+                                <li className="active"><Link to="/">Home</Link></li>
+                                <li><Link to="/other">Other</Link></li>
+                                <li><Link to="/another">Another</Link></li>
+                            </ul>
+                        </nav>
+                        <div className="panel panel-default col-md-10 col-md-offset-1">
+                            <div className="panel-body">
+                                <Route exact path="/" component={() => (<Welcome name="Lqlqlq" />)}/>
+                                <Route path="/other" component={() => (<Something name="Other" />)}/>
+                                <Route path="/another" component={() => (<Something name="Another" />)}/>
+                            </div>
+                        </div>
+                    </div>
+                </Router>
+            </div>
+        );
+    }
 }
 
 export default App;
